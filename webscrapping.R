@@ -1,3 +1,10 @@
+#' @title Access the DollyWood website and Scan Attributes
+#' @description
+#' This function works to retrieve the name of the rides in the park and extract various pieces of info about each ride.
+#' @importFrom
+#' @export
+
+
 library(rvest)
 library(stringr)
 library(tidyverse)

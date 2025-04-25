@@ -1,13 +1,13 @@
 Package: sds270final
-Title: Six Flags New England Ride Directory
+Title: DollyWood Ride Directory
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Abby", "Hunt", "ahunt@smith.edu", role = c("co-author""))
+    person("Samantha", "Murabito", "smurabito@smith.edu", role = c("co-author"))
+Description: This R package catalogs the rides at DollyWood amusement park in Pigeon Forge, Tennessee. These rides range in their location within the park, thrill level, height requirements, and more.
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
-URL: https://github.com/smurabito/sds270final
-BugReports: https://github.com/smurabito/sds270final/issues
+URL: https://github.com/smurabito/sds270final #might have to change this to abbys link??
+BugReports: https://github.com/smurabito/sds270final/issues 
