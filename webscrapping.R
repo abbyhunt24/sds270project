@@ -1,4 +1,4 @@
-#' @title Access the DollyWood website and Scan Attributes
+#' @title Access the DollyWood website and Scanning Attributes
 #' @description
 #' This function works to retrieve the name of the rides in the park and extract various pieces of info about each ride including the name of each ride and its location in the park.
 #' @importFrom
@@ -72,19 +72,32 @@ ride_locations_filtered
 #56: timber canyon
 #58: wildwood grove
 #62: wilderness pass
-#wildwood grove is listed as a ride but doesn't have a traditional location tag, maybe we can write in its location as wildwood grove?
+#wildwood grove is listed as a ride but it's an area of the park? im going to add one i guess
+# im going to filter these out manually for now, not sure why it's doing this
+ride_locations_filtered <- ride_locations_filtered[-c(5:8, 10, 17:18, 23, 25:26, 30:32, 35, 40, 48, 50, 52, 56, 58, 62)]
+ride_locations_filtered <- c("Wildwood Grove", as.list(ride_locations_filtered))
+ride_locations_filtered <- append(ride_locations_filtered[-1], ride_locations_filtered[1], 42)
 
 links_filtered <- links[valid_indices] #doing this adds two more links and makes a bunch of them NA? i dont think that there are any time saver functions in the links but there are duplicates, so maybe we do the unique() function instead??
 
 links_filtered <- unique(links) #something like this?? this also gets the NA count down
 
+#ride pictures, can't get this to work LOL
+ride_pictures <- dollywood |>
+  html_elements(".result-image img") |>
+  html_text()
+ride_pictures
+
+#only some of the images have these coordinates, need to figure out how to capture the info from the rest, make like an if else loop to catch it and have it run to look for the other ones?
 ride_descriptions <- sapply(links_filtered, function(link) {
   tryCatch({
     page <- read_html(link)
     desc <- page |>
-      html_element(".activity-info p") |>
-      html_text() |>
-      str_squish()
+      html_nodes(".activity-info p") |>
+      html_text()
+      #html_element(".activity-info p") |>
+      #html_text() |>
+      #str_squish()
     return(desc)
   }, error = function(e) {
     return(NA)
