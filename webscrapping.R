@@ -5,7 +5,6 @@
 #' @export
 
 #total number of rides on DollyWood website: 44
-
 library(rvest)
 library(stringr)
 library(tidyverse)
@@ -88,31 +87,33 @@ ride_pictures <- dollywood |>
   html_text()
 ride_pictures
 
-#only some of the images have these coordinates, need to figure out how to capture the info from the rest, make like an if else loop to catch it and have it run to look for the other ones?
 ride_descriptions <- sapply(links_filtered, function(link) {
   tryCatch({
     page <- read_html(link)
     desc <- page |>
-      html_nodes(".activity-info p") |>
+      html_nodes("p:nth-child(3) , .sectionDetails h2:nth-child(1), .hfe-grid-fullwidth h2, .hfe-grid-fullwidth .sectionDetails p, h1") |>
       html_text()
-      #html_element(".activity-info p") |>
-      #html_text() |>
-      #str_squish()
+    #html_element(".activity-info p") |>
+    #html_text() |>
+    #str_squish()
     return(desc)
   }, error = function(e) {
     return(NA)
   })
 })
 
-sum(is.na(ride_descriptions))  # Should show how many links failed
-
+sum(is.na(ride_descriptions))  # Should show how many links failed - 0!
 
 rides_df <- tibble(
-  name = ride_names_clean, #i made this ride_names_clean just for now but there are still the issues about size incompatability
+  name = ride_names_clean,
   location = ride_locations_filtered,
   description = ride_descriptions
 )
 rides_df
+
+#want to filter out the "" blanks
+remove_blanks <- rides_df[!str_detect(rides_df$description,  ""), ]
+
 
 
 
