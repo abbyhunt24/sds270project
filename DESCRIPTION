@@ -1,9 +1,10 @@
 Package: sds270final
 Title: DollyWood Ride Directory
 Version: 0.0.0.9000
-Authors@R: 
-    person("Abby", "Hunt", "ahunt@smith.edu", role = c("co-author""))
-    person("Samantha", "Murabito", "smurabito@smith.edu", role = c("co-author"))
+Authors@R: c(
+    person("Abby", "Hunt", ,"ahunt@smith.edu", role = c("aut", "cre")),
+    person("Samantha", "Murabito", ,"smurabito@smith.edu", role = "aut")
+  )
 Description: This R package catalogs the rides at DollyWood amusement park in Pigeon Forge, Tennessee. These rides range in their location within the park, thrill level, height requirements, and more.
 License: MIT + file LICENSE
 Encoding: UTF-8
