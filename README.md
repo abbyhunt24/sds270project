@@ -1,0 +1,28 @@
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# sds270final
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of DollyWood is to …
+
+## Installation
+
+You can install the development version of DollyWood from
+[GitHub](https://github.com/) with:
+
+``` r
+# install.packages("pak")
+pak::pak("abbyhunt24/sds270project")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+``` r
+library(sds270final)
+## basic example code
+```
