@@ -2,9 +2,10 @@
 #' @description
 #' This function works to retrieve the name of the rides in the park and extract various pieces of info about each ride including the name of each ride and its location in the park.
 #' @importFrom
+#' @returns A list of NUMBER elements
+#' * Ride name:
+#' *
 #' @export
-
-
 
 ###LOADING PACKAGES
 #total number of rides on DollyWood website: 44
@@ -96,12 +97,6 @@ ride_locations_filtered <- append(ride_locations_filtered[-1], ride_locations_fi
 
 
 ###RIDE PICTURES
-#ride pictures, can't get this to work LOL
-ride_pictures <- dollywood |>
-  html_elements(".result-image img") |>
-  html_text()
-ride_pictures
-
 images <- dollywood |>
   html_elements(".resultItem img") |>
   html_attr("src")
@@ -112,7 +107,6 @@ head(images)
 
 
 
-
 ###RIDE DESCRIPTIONS
 ride_descriptions <- sapply(links, function(link) {
   tryCatch({
@@ -120,9 +114,6 @@ ride_descriptions <- sapply(links, function(link) {
     desc <- page |>
       html_nodes("p:nth-child(3) , .sectionDetails h2:nth-child(1), .hfe-grid-fullwidth h2, .hfe-grid-fullwidth .sectionDetails p, h1") |>
       html_text()
-    #html_element(".activity-info p") |>
-    #html_text() |>
-    #str_squish()
     return(desc)
   }, error = function(e) {
     return(NA)
@@ -131,12 +122,72 @@ ride_descriptions <- sapply(links, function(link) {
 
 sum(is.na(ride_descriptions))  # Should show how many links failed - 0!
 
+###RIDE HEIGHT REQUIREMENTS (some of them don't have requirements or pick up wrong info, can manually clean the three with wrong info)
+ride_height <- sapply(links, function(link) {
+  tryCatch({
+    page <- read_html(link)
+    height <- page |>
+      html_nodes(".activityMetaContainer p") |>
+      html_text()
+    return(height)
+  }, error = function(e) {
+    return(NA)
+  })
+})
+
+###RIDE TYPES (again not all of them have, i can filter out "types: ")
+ride_types <- sapply(links, function(link) {
+  tryCatch({
+    page <- read_html(link)
+    type <- page |>
+      html_nodes(".col-md-12.activityMetaContainer .mr-3") |>
+      html_text()
+    return(type)
+  }, error = function(e) {
+    return(NA)
+  })
+})
+
+###RIDE SAFETY
+ride_safety <- sapply(links, function(link) {
+  tryCatch({
+    page <- read_html(link)
+    safety <- page |>
+      html_nodes(".mt-5 p") |>
+      html_text()
+    return(safety)
+  }, error = function(e) {
+    return(NA)
+  })
+})
+
+###OTHER RECOMMENDED RIDES, still need to figure out the regex and how to do it in a quoted phrase
+rec_rides <- sapply(links, function(link) {
+  tryCatch({
+    page <- read_html(link)
+    recs <- page |>
+      html_nodes("#rAct_4^\\d+$ h4") |>
+      html_text()
+    return(recs)
+  }, error = function(e) {
+    return(NA)
+  })
+})
+
+###CREATING RIDE INFO DATAFRAME
 rides_df <- tibble(
   name = ride_names,
   location = ride_locations_filtered,
-  description = ride_descriptions
+  description = ride_descriptions,
+  image = images,
+  height = ride_height,
+  type = ride_types,
+  safety = ride_safety,
 )
 rides_df
+
+###REPLACES "CHARACTER(O)" VALUES WITH NULL
+rides_df[rides_df == "character(0)"] <- NA
 
 #want to filter out the "" blanks
 remove_blanks <- rides_df[!str_detect(rides_df$description,  ""), ]
