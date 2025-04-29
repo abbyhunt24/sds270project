@@ -113,7 +113,10 @@ ride_descriptions <- sapply(links, function(link) {
     page <- read_html(link)
     desc <- page |>
       html_nodes("p:nth-child(3) , .sectionDetails h2:nth-child(1), .hfe-grid-fullwidth h2, .hfe-grid-fullwidth .sectionDetails p, h1") |>
-      html_text()
+      html_text2()
+    desc <- desc[desc != ""]
+    desc <- paste(desc, collapse = " ")
+    desc <- trimws(desc)
     return(desc)
   }, error = function(e) {
     return(NA)
@@ -128,7 +131,10 @@ ride_height <- sapply(links, function(link) {
     page <- read_html(link)
     height <- page |>
       html_nodes(".activityMetaContainer p") |>
-      html_text()
+      html_text2()
+    height <- height[height != ""]
+    height <- paste(height , collapse = " ")
+    height <- trimws(height)
     return(height)
   }, error = function(e) {
     return(NA)
@@ -141,7 +147,10 @@ ride_types <- sapply(links, function(link) {
     page <- read_html(link)
     type <- page |>
       html_nodes(".col-md-12.activityMetaContainer .mr-3") |>
-      html_text()
+      html_text2()
+    type <- type[type != ""]
+    type <- paste(type, collapse = " ")
+    type <- trimws(type)
     return(type)
   }, error = function(e) {
     return(NA)
@@ -154,7 +163,10 @@ ride_safety <- sapply(links, function(link) {
     page <- read_html(link)
     safety <- page |>
       html_nodes(".mt-5 p") |>
-      html_text()
+      html_text2()
+    safety <- safety[safety != ""]
+    safety <- paste(safety, collapse = " ")
+    safety <- trimws(safety)
     return(safety)
   }, error = function(e) {
     return(NA)
@@ -166,13 +178,17 @@ rec_rides <- sapply(links, function(link) {
   tryCatch({
     page <- read_html(link)
     recs <- page |>
-      html_nodes("#rAct_4^\\d+$ h4") |>
-      html_text()
+      html_nodes("[id^='rAct_'] h4") |>
+      html_text2()  # html_text2() is better for cleaning
+    recs <- recs[recs != ""]
+    recs <- paste(recs, collapse = " ")
+    recs <- trimws(recs)
     return(recs)
   }, error = function(e) {
     return(NA)
   })
 })
+
 
 ###CREATING RIDE INFO DATAFRAME
 rides_df <- tibble(
@@ -183,6 +199,7 @@ rides_df <- tibble(
   height = ride_height,
   type = ride_types,
   safety = ride_safety,
+  reccomendations = rec_rides
 )
 rides_df
 
