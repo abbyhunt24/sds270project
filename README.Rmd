@@ -16,9 +16,11 @@ knitr::opts_chunk$set(
 # sds270final
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/abbyhunt24/sds270project/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/abbyhunt24/sds270project/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/abbyhunt24/sds270project/graph/badge.svg)](https://app.codecov.io/gh/abbyhunt24/sds270project)
 <!-- badges: end -->
 
-The goal of DollyWood is to ...
+The `DollyWood` package provides an R interface to retrieve data about [DollyWood rides]("https://www.dollywood.com/themepark/rides/"). 
 
 ## Installation
 
