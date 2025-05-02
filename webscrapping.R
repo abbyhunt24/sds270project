@@ -112,7 +112,7 @@ ride_descriptions <- sapply(links, function(link) {
   tryCatch({
     page <- read_html(link)
     desc <- page |>
-      html_nodes("p:nth-child(3) , .sectionDetails h2:nth-child(1), .hfe-grid-fullwidth h2, .hfe-grid-fullwidth .sectionDetails p, h1") |>
+      html_nodes("p:nth-child(3) , .sectionDetails h2:nth-child(1), .hfe-grid-fullwidth h2, .hfe-grid-fullwidth .sectionDetails p, h1, .col-md-9 p") |>
       html_text2()
     desc <- desc[desc != ""]
     desc <- paste(desc, collapse = " ")
@@ -141,7 +141,8 @@ ride_height <- sapply(links, function(link) {
   })
 })
 
-###RIDE TYPES (again not all of them have, i can filter out "types: ")
+
+###RIDE TYPES
 ride_types <- sapply(links, function(link) {
   tryCatch({
     page <- read_html(link)
@@ -156,6 +157,7 @@ ride_types <- sapply(links, function(link) {
     return(NA)
   })
 })
+
 
 ###RIDE SAFETY
 ride_safety <- sapply(links, function(link) {
@@ -199,14 +201,12 @@ rides_df <- tibble(
   height = ride_height,
   type = ride_types,
   safety = ride_safety,
-  reccomendations = rec_rides
+  recomendations = rec_rides
 )
 rides_df
 
 ###REPLACES "CHARACTER(O)" VALUES WITH NULL
 rides_df[rides_df == "character(0)"] <- NA
 
-#want to filter out the "" blanks
-remove_blanks <- rides_df[!str_detect(rides_df$description,  ""), ]
-
-
+###REMOVE "TYPES: " FROM THE TYPE COLUMN
+rides_df <- gsub("Types: ", "", as.character(rides_df$type))
