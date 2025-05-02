@@ -18,14 +18,15 @@
 #'
 #'@export
 
-dolly_search <- function(col_name, input) {
-  user_input <- grepl(input, rides_df[[col_name]])
-  if (user_input == TRUE) {
+dolly_search <- function(data, col_name, input) {
+  if (col_name %in% colnames(data)) {
+    user_input <- grepl(input, data[[col_name]], fixed = TRUE)
     return (user_input)
   } else {
     stop("Could not find a match. Check for typos and try again!")
   }
 }
+
 
 #'@title Plot an image of a Dollywood ride
 #'@description
