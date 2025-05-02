@@ -17,3 +17,7 @@ Imports:
   png
 URL: https://github.com/abbyhunt24/sds270project
 BugReports: https://github.com/abbyhunt24/sds270project/issues 
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
