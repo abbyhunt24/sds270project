@@ -18,15 +18,23 @@
 #'
 #'@export
 
-dolly_search <- function(data, col_name, input) {
-  if (col_name %in% colnames(data)) {
-    user_input <- grepl(input, data[[col_name]], fixed = TRUE)
-    return (user_input)
-  } else {
-    stop("Could not find a match. Check for typos and try again!")
+get_ride_info <- function(ride_name) {
+  # Check that the rides_df object exists
+  if (!exists("rides_df")) {
+    stop("rides_df not found. Make sure you've loaded the webscraped data.")
   }
-}
 
+  # Standardize input and match to name
+  match_idx <- which(str_detect(tolower(rides_df$name), tolower(ride_name)))
+
+  if (length(match_idx) == 0) {
+    stop("No matching ride found. Check the spelling or try a partial name.")
+  } else if (length(match_idx) > 1) {
+    warning("Multiple matches found. Returning all matches.")
+  }
+
+  return(rides_df[match_idx, ])
+}
 
 #'@title Plot an image of a Dollywood ride
 #'@description
