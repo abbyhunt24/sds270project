@@ -13,30 +13,43 @@ knitr::opts_chunk$set(
 )
 ```
 
-# sds270final
+# Dollywood Attraction Directory Explorer
+
+The `Dollywood` package allows users to explore the rides and attractions at [Dollywood Amusement Park] (https://www.dollywood.com/) in Pigeon Forge, Tennessee. Users of this package have the ability to search for and filter these attractions based on factors like their name, their location in the park, and more. 
+
+In addition, users have the ability to pull an image of each attraction.
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/abbyhunt24/sds270project/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/abbyhunt24/sds270project/actions/workflows/R-CMD-check.yaml)
 [![Codecov test coverage](https://codecov.io/gh/abbyhunt24/sds270project/graph/badge.svg)](https://app.codecov.io/gh/abbyhunt24/sds270project)
 <!-- badges: end -->
 
-The `DollyWood` package provides an R interface to retrieve data about [DollyWood rides]("https://www.dollywood.com/themepark/rides/"). 
+The `Dollywood` package provides an R interface to retrieve data about [Dollywood rides]("https://www.dollywood.com/themepark/rides/"). 
 
 ## Installation
 
-You can install the development version of DollyWood from [GitHub](https://github.com/) with:
+You can install the development version of Dollywood from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("pak")
 pak::pak("abbyhunt24/sds270project")
 ```
 
-## Example
+## Usage
 
-This is a basic example which shows you how to solve a common problem:
+This package allows users to filter the Dollywood attractions for a variety of characteristics. The following is an example of using the `dolly_search()` function to search for a ride by name
 
 ```{r example}
 library(sds270final)
-## basic example code
+
+barnstormer <- dolly_search(rides_df, "name", "barnstormer")
+str(barnstormer)
 ```
 
+In addition, the `ride_pic()` function allows users to generate an image of each ride.
+
+```{r example}
+library(sds270final)
+
+ride_pic(barnstormer)
+```
