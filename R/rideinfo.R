@@ -18,22 +18,16 @@
 #'
 #'@export
 
-get_ride_info <- function(ride_name) {
-  # Check that the rides_df object exists
-  if (!exists("rides_df")) {
-    stop("rides_df not found. Make sure you've loaded the webscraped data.")
+dolly_search <- function(data, col_name, input) {
+  if(!(col_name %in% colnames(data))) {
+    stop("Could not find a match. Chack for typos and try again!")
   }
-
-  # Standardize input and match to name
-  match_idx <- which(str_detect(tolower(rides_df$name), tolower(ride_name)))
-
-  if (length(match_idx) == 0) {
-    stop("No matching ride found. Check the spelling or try a partial name.")
-  } else if (length(match_idx) > 1) {
-    warning("Multiple matches found. Returning all matches.")
+  if (!any(grepl(input, data[[col_name]],
+                 ignore.case = TRUE))) {
+    stop("Could not find a match. Check for typos and try again!")
   }
-
-  return(rides_df[match_idx, ])
+  data[grepl(input, data[[col_name]],
+             ignore.case = TRUE),]
 }
 
 #'@title Plot an image of a Dollywood ride
