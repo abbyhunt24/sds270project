@@ -4,7 +4,7 @@
 \alias{ride_pic}
 \title{Plot an image of a Dollywood ride}
 \usage{
-ride_pic(ride)
+ride_pic(data, ride_names)
 }
 \arguments{
 \item{name}{The name of a ride present in the \code{name} column in the Dollywood data frame.}

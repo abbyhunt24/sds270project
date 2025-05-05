@@ -45,16 +45,38 @@ dolly_search <- function(data, col_name, input) {
 #'
 #'
 #'@export
+#'
+ride_pic <- function(data, ride_names) {
+  if (!(ride_names %in% data$name)) {
+    stop("Could not find a match. Check for typos and try again!")
+  }
+  image_url <- data$image[data$name == ride_names]
+  image_url_clean <- sub("\\?.*$", "", image_url)
+  img_type <- tools::file_ext(image_url_clean)
+  tmp <- httr::GET(image_url)
 
-ride_pic <- function(ride) {
-  img_type <- tools::file_ext(ride$image)
-  tmp <- httr::GET(url = rides_df$image)
-
-  if (img_type == "jpeg") {
-    image <- jpeg::readJPEG(tmp$content)
+  if (img_type %in% c("jpeg", "jpg")) {
+    img <- jpeg::readJPEG(tmp$content)
+  } else if (img_type == "png") {
+    img <- png::readPNG(tmp$content)
   } else {
-    image <- png::readPNG(tmp$content)
+    stop(paste("Unsupported image format:", img_type))
   }
   graphics::plot.new()
-  grid::grid.raster(image)
+  grid::grid.raster(img)
+  graphics::title(main = ride_names)
 }
+
+##New function to maybe to do both at the same time??
+get_ride_info <- function(data, col_name, input) {
+  result <- dolly_search(data, col_name, input)
+  for (ride in result$name) {
+    message(paste("Showing image for:", ride))
+    ride_pic(data, ride)
+  }
+  return(result)
+}
+##usage: get_ride_info(rides_df, "name", "Barnstormer")
+
+
+
