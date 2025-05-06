@@ -9,7 +9,7 @@ attractions at \[Dollywood Amusement Park\]
 package have the ability to search for and filter these attractions
 based on factors like their name, their location in the park, and more.
 
-In addition, users have the ability to pull an image of each attraction.
+In addition, users have the ability to pull an image of each attraction. 
 
 <!-- badges: start -->
 
