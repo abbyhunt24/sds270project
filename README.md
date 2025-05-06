@@ -6,7 +6,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of DollyWood is to …
+The goal of DollyWood is to … 
 
 ## Installation
 
