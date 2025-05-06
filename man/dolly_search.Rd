@@ -7,6 +7,8 @@
 dolly_search(data, col_name, input)
 }
 \arguments{
+\item{data}{The name of the data frame the user would like to search through, if looking for info on Dollywood, use \code{rides_df}}
+
 \item{col_name}{The name of a column in the Dollywood data frame, the text you are searching for.}
 
 \item{input}{The name of what the user is looking for in the specified column of the Dollywood data frame.}

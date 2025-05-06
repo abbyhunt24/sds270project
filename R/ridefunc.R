@@ -1,9 +1,9 @@
 #'@title Search the Dollywood Data Frame
 #'@description
 #'Given the name of either a Dollywood ride or a criteria to filter by, the `dolly_search()` function will provide information about rides meeting the criteria. This data includes the name of the ride, its description, and its location in the park. If user input not found in data frame, will return an error message.
+#'@param data The name of the data frame the user would like to search through, if looking for info on Dollywood, use `rides_df`
 #'@param col_name The name of a column in the Dollywood data frame, the text you are searching for.
 #'@param input The name of what the user is looking for in the specified column of the Dollywood data frame.
-#'@importFrom jsonlite read_json?
 #'@returns A list of 8 elements
 #'*`name`: A scalar character vector
 #'*`location`: A scalar character vector
@@ -32,7 +32,8 @@ dolly_search <- function(data, col_name, input) {
 #'@title Plot an image of a Dollywood Ride
 #'@description
 #'Given the name of a Dollywood ride, will provide user an image of the ride. If ride not found in data frame, will return an error.
-#'@param name The name of a ride present in the `name` column in the Dollywood data frame.
+#'@param data The name of the data frame the user would like to search through, if looking for info on Dollywood, use `rides_df`
+#'@param ride_names The name of a ride present in the `name` column in the `rides_df` data frame.
 #'@importFrom tools file_ext
 #'@importFrom httr GET
 #'@importFrom png readPNG
@@ -66,15 +67,6 @@ ride_pic <- function(data, ride_names) {
   graphics::title(main = ride_names)
 }
 
-##New function to maybe to do both at the same time??
-get_ride_info <- function(data, col_name, input) {
-  result <- dolly_search(data, col_name, input)
-  for (ride in result$name) {
-    message(paste("Showing image for:", ride))
-    ride_pic(data, ride)
-  }
-  return(result)
-}
 ##usage: get_ride_info(rides_df, "name", "Barnstormer")
 
 

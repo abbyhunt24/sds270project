@@ -15,6 +15,7 @@
 \item{safety}{Safety information for each ride/attraction. Not present for all rows}
 \item{recommendations}{Rides/attractions similar to the one you are curently looking at}
 }
+}
 \source{
 \url{https://www.dollywood.com/themepark/rides/}
 }

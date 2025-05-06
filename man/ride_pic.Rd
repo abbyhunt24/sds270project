@@ -7,7 +7,9 @@
 ride_pic(data, ride_names)
 }
 \arguments{
-\item{name}{The name of a ride present in the \code{name} column in the Dollywood data frame.}
+\item{data}{The name of the data frame the user would like to search through, if looking for info on Dollywood, use \code{rides_df}}
+
+\item{ride_names}{The name of a ride present in the \code{name} column in the \code{rides_df} data frame.}
 }
 \value{
 A rastergrab grob.
