@@ -37,13 +37,11 @@ pak::pak("abbyhunt24/sds270project")
 
 ## Usage
 
-<<<<<<< HEAD
 This package allows users to filter the Dollywood attractions for a variety of characteristics. The following is an example of using the `dolly_search()` function to search for a ride by name.
 
 In addition, the `ride_pic()` function allows users to generate an image of each ride.
-=======
+
 This package allows users to filter the Dollywood attractions for a variety of characteristics. The following is an example of using the `dolly_search()` function to search for a ride by name and the `ride_pic()` function to see an image of that ride.
->>>>>>> 42a4f83 (vignettes and changed package name)
 
 ```{r example}
 library(dollywoodR)
@@ -52,7 +50,5 @@ barnstormer <- dolly_search(rides_df, "name", "Barnstormer")
 str(barnstormer)
 
 barnstormer_pic <- ride_pic(rides_df, "Barnstormer")
-
-ride_pic(barnstormer_pic)
 ```
 
