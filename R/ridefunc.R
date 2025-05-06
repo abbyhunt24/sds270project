@@ -14,10 +14,9 @@
 #'*`safety`: A scalar character vector, may be empty
 #'*`recommendations`: A scalar character vector, may be empty
 #'@examples
-#'
-#'
+#'barnstormer <- dolly_search(rides_df, "name", "barnstormer")
+#'str(barnstormer)
 #'@export
-
 dolly_search <- function(data, col_name, input) {
   if(!(col_name %in% colnames(data))) {
     stop("Could not find a match. Chack for typos and try again!")
@@ -30,7 +29,7 @@ dolly_search <- function(data, col_name, input) {
              ignore.case = TRUE),]
 }
 
-#'@title Plot an image of a Dollywood ride
+#'@title Plot an image of a Dollywood Ride
 #'@description
 #'Given the name of a Dollywood ride, will provide user an image of the ride. If ride not found in data frame, will return an error.
 #'@param name The name of a ride present in the `name` column in the Dollywood data frame.

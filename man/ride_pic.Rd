@@ -2,7 +2,7 @@
 % Please edit documentation in R/ridefunc.R
 \name{ride_pic}
 \alias{ride_pic}
-\title{Plot an image of a Dollywood ride}
+\title{Plot an image of a Dollywood Ride}
 \usage{
 ride_pic(data, ride_names)
 }

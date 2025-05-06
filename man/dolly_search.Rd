@@ -25,3 +25,7 @@ A list of 8 elements
 \description{
 Given the name of either a Dollywood ride or a criteria to filter by, the \code{dolly_search()} function will provide information about rides meeting the criteria. This data includes the name of the ride, its description, and its location in the park. If user input not found in data frame, will return an error message.
 }
+\examples{
+barnstormer <- dolly_search(rides_df, "name", "barnstormer")
+str(barnstormer)
+}
