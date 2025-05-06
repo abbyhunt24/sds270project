@@ -9,7 +9,7 @@ attractions at \[Dollywood Amusement Park\]
 package have the ability to search for and filter these attractions
 based on factors like their name, their location in the park, and more.
 
-In addition, users have the ability to pull an image of each attraction. 
+In addition, users have the ability to pull an image of each attraction.
 
 <!-- badges: start -->
 
@@ -39,13 +39,6 @@ variety of characteristics. The following is an example of using the
 
 In addition, the `ride_pic()` function allows users to generate an image
 of each ride.
-
-
-This package allows users to filter the Dollywood attractions for a
-variety of characteristics. The following is an example of using the
-`dolly_search()` function to search for a ride by name and the
-`ride_pic()` function to see an image of that ride.
-
 
 ``` r
 library(dollywoodR)
