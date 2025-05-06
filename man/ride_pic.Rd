@@ -17,3 +17,6 @@ A rastergrab grob.
 \description{
 Given the name of a Dollywood ride, will provide user an image of the ride. If ride not found in data frame, will return an error.
 }
+\examples{
+barnstormer <- ride_pic(rides_df, "Barnstormer")
+}

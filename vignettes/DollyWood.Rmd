@@ -14,6 +14,32 @@ knitr::opts_chunk$set(
 )
 ```
 
+
+## Browsing Dollywood Rides & Attractions
+
+The main function of the dollywood package is to let you browse Dollywood rides and attractions from within R. Let's see how we can accomplish this. First, load the `dollywoodR` package.
+
 ```{r setup}
-library(sds270final)
+library(dollywoodR)
 ```
+
+
+Then, use the `dolly_search()` function to retrieve information about a particular ride. We'll retrieve information about the ride "Barnstormer", so we'll set the name of the ride argument to "Barnstormer".
+
+```{r}
+Barnstormer_info <- dolly_search(rides_df, "name", "Barnstormer")
+```
+
+
+The `ride_pic()` function takes the list of metadata, and displays the actual image of the ride in the plot window:
+
+```{r}
+ride_pic(rides_df, "Barnstormer")
+```
+
+
+
+
+
+
+
