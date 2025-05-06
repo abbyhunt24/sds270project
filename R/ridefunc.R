@@ -42,8 +42,7 @@ dolly_search <- function(data, col_name, input) {
 #'@importFrom grid grid.raster
 #'@returns A rastergrab grob.
 #'@examples
-#'
-#'
+#'barnstormer <- ride_pic(rides_df, "Barnstormer")
 #'@export
 #'
 ride_pic <- function(data, ride_names) {
