@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(sds270final)
+library(dollywoodR)
 
-test_check("sds270final")
+test_check("dollywoodR")
