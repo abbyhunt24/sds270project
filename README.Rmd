@@ -42,13 +42,11 @@ This package allows users to filter the Dollywood attractions for a variety of c
 In addition, the `ride_pic()` function allows users to generate an image of each ride.
 
 ```{r example}
-library(sds270final)
+library(dollywoodR)
 
 barnstormer <- dolly_search(rides_df, "name", "Barnstormer")
 str(barnstormer)
 
 barnstormer_pic <- ride_pic(rides_df, "Barnstormer")
-
-ride_pic(barnstormer_pic)
 ```
 
