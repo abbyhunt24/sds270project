@@ -9,8 +9,4 @@
 library(testthat)
 library(dollywoodR)
 
-<<<<<<< HEAD
 test_check("dollywoodR")
-=======
-test_check(dollywoodR)
->>>>>>> 97ef267 (fixing package name)
