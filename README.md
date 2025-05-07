@@ -65,3 +65,4 @@ barnstormer_pic <- ride_pic(rides_df, "Barnstormer")
 ```
 
 <img src="man/figures/README-example-1.png" width="100%" />
+ 
